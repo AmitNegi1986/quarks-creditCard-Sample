@@ -12,10 +12,10 @@ public class Product {
 	}
 
 	@NotNull
-    String name;
+    public String name;
 
     @NotNull
-    Double price;
+    public Double price;
 
     @JsonbCreator
     public Product(@JsonbProperty("name") String name, @JsonbProperty("price") Double price) {

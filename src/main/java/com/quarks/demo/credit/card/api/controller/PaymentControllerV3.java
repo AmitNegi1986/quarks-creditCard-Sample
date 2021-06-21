@@ -27,7 +27,7 @@ public class PaymentControllerV3 {
 
 	@POST
 	public Response doPayment( @Valid Payment payment) {
-		com.quarks.demo.credit.card.api.entity.Payment paymentEntity  = paymentService.doPayment(payment);
+		Payment paymentEntity  = paymentService.doPayment(payment);
 		return Response.status(Status.CREATED).entity(paymentEntity.id.toHexString()).build();		
 	}
 
@@ -35,7 +35,7 @@ public class PaymentControllerV3 {
 	@GET
 	@Path(value = ResourcePaths.ID)
 	public Response getPayment(@PathParam(value = "id") String id) {
-		com.quarks.demo.credit.card.api.entity.Payment paymentEntity = paymentService.getPayment(id);
+		Payment paymentEntity = paymentService.getPayment(id);
 		if (paymentEntity == null) {
 			throw new EntityNotFoundException(String.valueOf(id));
 		}

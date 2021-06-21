@@ -11,7 +11,7 @@ public class Store {
 	}
 
 	@NotNull
-    private String name;
+    public String name;
 
     @JsonbCreator
     public Store(@JsonbProperty("name") String name) {

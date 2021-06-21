@@ -10,17 +10,15 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.quarks.demo.credit.card.api.entity.Payment;
-import com.quarks.demo.credit.card.api.model.CardType;
 
+import com.quarks.demo.credit.card.api.model.CardType;
+import com.quarks.demo.credit.card.api.model.Payment;
 import com.quarks.demo.credit.card.api.model.Product;
 import com.quarks.demo.credit.card.api.model.Store;
 import com.quarks.demo.credit.card.api.repository.PaymentRepository;
 
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
-import io.quarkus.runtime.ShutdownEvent;
-import io.quarkus.runtime.StartupEvent;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
 @QuarkusMain

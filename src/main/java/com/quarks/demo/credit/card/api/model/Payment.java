@@ -12,7 +12,8 @@ import javax.validation.constraints.NotNull;
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
-public class Payment {
+@MongoEntity(collection = "payments")
+public class Payment extends PanacheMongoEntity {
 	
 	public Payment() {
 		super();
@@ -20,24 +21,24 @@ public class Payment {
 
 	@NotNull
 	@JsonbProperty("cardType")
-	CardType cardType;
+	public CardType cardType;
 
 	@NotNull
 	@JsonbProperty("cardNumber")
-	String cardNumber;
+	public String cardNumber;
 
 	@NotNull
 	@JsonbProperty("expirationDate")
 	@JsonbDateFormat(JsonbDateFormat.TIME_IN_MILLIS)
-	Date expirationDate;
+	public Date expirationDate;
 
 	@NotNull
 	@JsonbProperty("store") 
-	Store store;
+	public Store store;
 
 	@NotEmpty
 	@JsonbProperty("products") 
-	List<Product> products;
+	public List<Product> products;
 
 	@JsonbCreator
 	public Payment(@JsonbProperty("cardType") CardType cardType, @JsonbProperty("cardNumber") String cardNumber,
@@ -71,5 +72,10 @@ public class Payment {
 		return products;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Payment [cardType=%s, cardNumber=%s, expirationDate=%s, store=%s, products=%s, id=%s]",
+				cardType, cardNumber, expirationDate, store, products, id);
+	}
 
 }
