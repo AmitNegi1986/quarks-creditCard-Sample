@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  api_service:
+    build: 
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm
+    image: quarkus/credit-card-api-jvm:latest
+    container_name: credit-card-api-jvm
+    ports:
+      - 8080:8080
+    environment:
+    - MONGODB_URI=mongodb://mongo_db_server  
+    depends_on:
+      - mongo_db
+      
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db_server
+    ports:
+      - 27017:27017
+  
