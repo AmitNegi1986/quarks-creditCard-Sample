@@ -69,7 +69,12 @@
               <goal>build</goal>
               <goal>generate-code</goal>
               <goal>generate-code-tests</goal>
+             
             </goals>
+            <configuration>
+                                <enableHttpUrlHandler>true</enableHttpUrlHandler>
+                <additionalBuildArgs>-J-Xmx2G</additionalBuildArgs>
+                            </configuration>
           </execution>
         </executions>
       </plugin>
