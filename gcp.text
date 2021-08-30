@@ -1,0 +1,37 @@
+gcloud artifacts repositories create quarkus-learning-repo \
+   --repository-format=docker \
+   --location=asia-south2 \
+   --description="Docker repository"
+   
+gcloud auth configure-docker asia-south2-docker.pkg.dev
+
+docker tag registry.access.redhat.com/ubi8/ubi-minimal:8.3 asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/registry.access.redhat.com/ubi8/ubi-minimal:8.3
+
+docker push asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/registry.access.redhat.com/ubi8/ubi-minimal:8.3
+
+docker tag mongo asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/mongo:tag1
+
+docker push asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/mongo:tag1
+
+docker tag quarkus/credit-card-api-native asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/quarkus-credit-card-api-native:tag1
+
+docker tag quarkus/credit-card-api-jvm asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/quarkus-credit-card-api-jvm:tag1
+
+docker push asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/quarkus-credit-card-api-native:tag1
+
+docker push asia-south2-docker.pkg.dev/${PROJECT_ID}/quarkus-learning-repo/quarkus-credit-card-api-jvm:tag1
+
+gcloud config set compute/region asia-south2
+
+gcloud container clusters create quarkus-demo-cluster
+
+gcloud container clusters get-credentials quarkus-demo-cluster --zone asia-south2-a
+
+kubectl apply -f mongo-db-deployment.yml
+
+kubectl apply -f mongo-db-service.yml
+
+kubectl apply -f quarkus-credit-app-native-deployment.yml
+
+kubectl apply -f quarkus-credit-app-native-service.yml
+

@@ -7,7 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/credit-card-api .
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/credit-card-api-native .
 #
 # Then run the container using:
 #

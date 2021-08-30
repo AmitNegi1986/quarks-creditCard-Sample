@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-jvm.yml
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: quarkus-credit-card-api-jvm
+  name: quarkus-credit-card-api-jvm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: quarkus-credit-card-api-jvm
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-jvm.yml
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: quarkus-credit-card-api-jvm
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_URI
+              value: mongodb://mongo-db:27017
+          image: asia-south2-docker.pkg.dev/quarkuslearning/quarkus-learning-repo/quarkus-credit-card-api-jvm:tag1
+          name: quarkus-credit-card-api-jvm
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
